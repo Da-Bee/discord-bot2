@@ -19,9 +19,6 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-  if (message.content.endsWith('?')) {
-    message.channel.send('<@663876333243203589>')
-  }
   if (message.content === '<@792844689736597576>') {
     message.channel.send(`Hi! My prefix is: ${prefix}\nUse ${prefix}help for a list of my commands!`)
   }
