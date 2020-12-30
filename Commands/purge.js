@@ -1,6 +1,5 @@
 module.exports = {
   name: 'purge',
-  aliases: ['prune'],
   description: 'Purge up to 99 messages.',
   guildOnly: true,
   permissions: 'MANAGE_MESSAGES',

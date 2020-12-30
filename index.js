@@ -25,6 +25,9 @@ client.on('message', message => {
   if (message.content === '<@793578516482228224>') {
     message.channel.send(`Hi! My prefix is: ${prefix}\nUse ${prefix}help for a list of my commands!`)
   }
+  if (message.content === '+') {
+    message.channel.send('<@608758675183501315>')
+  }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
