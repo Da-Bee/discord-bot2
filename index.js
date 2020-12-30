@@ -19,7 +19,10 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-  if (message.content === '<@792844689736597576>') {
+  if (message.channel.id === '773731912547565628' && message.content.endsWith('?')) {
+    message.channel.send('<@663876333243203589>')
+  }
+  if (message.content === '<@793578516482228224>') {
     message.channel.send(`Hi! My prefix is: ${prefix}\nUse ${prefix}help for a list of my commands!`)
   }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
