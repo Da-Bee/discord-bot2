@@ -8,7 +8,7 @@ module.exports = {
                 message.channel.send('Shutting down...')        
                 process.exit();
                 } else if (message.author.id != `${ownerid}`) {
-                        message.channel.send(`Only the bot owner can use this c>
+                        message.channel.send(`Only the bot owner can use this command, ${message.author}!`)
                 }
                 },
         };
