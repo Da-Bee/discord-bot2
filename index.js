@@ -43,7 +43,7 @@ client.on('message', message => {
   }
 
   if (command.permissions) {
-    const authorPerms = message.channel.permissionsFor(message.client.user);
+    const authorPerms = message.channel.permissionsFor(message.member);
     if (!authorPerms || !authorPerms.has(command.permissions)) {
       return message.channel.reply('You cannot use this command!');
     }
