@@ -1,5 +1,6 @@
 module.exports = {
   name: 'ban',
+  aliases: ['silence'],
   description: 'Bans a user!',
   guildOnly: true,
   usage: '<user>',
