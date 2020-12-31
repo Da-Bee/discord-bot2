@@ -26,7 +26,7 @@ client.on('message', message => {
     message.channel.send(`Hi! My prefix is: ${prefix}\nUse ${prefix}help for a list of my commands!`)
   }
   if (message.content === '+') {
-    message.channel.send('<@608758675183501315>')
+    message.channel.send(`Getting ${ownerid}...`)
   }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
