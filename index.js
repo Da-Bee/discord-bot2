@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, ownerid } = require('./config.json');
+const { prefix, token, ownerid, ownerping } = require('./config.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -26,7 +26,7 @@ client.on('message', message => {
     message.channel.send(`Hi! My prefix is: ${prefix}\nUse ${prefix}help for a list of my commands!`)
   }
   if (message.content === '+') {
-    message.channel.send(`Getting ${ownerid}...`)
+    message.channel.send(`Getting ${ownerping}...`)
   }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
