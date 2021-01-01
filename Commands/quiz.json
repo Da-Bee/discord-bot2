@@ -1,0 +1,22 @@
+[
+	{
+		"question": "What color is the sky?",
+		"answers": ["blue"]
+	},
+	{
+		"question": "How many letters are there in the alphabet?",
+		"answers": ["26", "twenty-six", "twenty six", "twentysix"]
+	},
+  {
+    "question": "What is my name?",
+    "answers": ["CyberBug", "cyberbug"]
+  },
+  {
+    "question": "Who is the server owner?",
+    "answers": ["<@547892720639934486>", "Kuba", "Nathan"]
+  },
+  {
+    "question": "In pool, what color is the one ball?"
+    "answers": ["yellow"]
+  }
+]
