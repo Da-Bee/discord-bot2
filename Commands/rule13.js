@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'rule12',
-  aliases: ['r12'],
-  description: 'Pulls rule 12 of the server.',
+  name: 'rule13',
+  aliases: ['r13'],
+  description: 'Pulls rule 13 of the server.',
   guildOnly: true,
   cooldown: 15,
   execute(message) {
