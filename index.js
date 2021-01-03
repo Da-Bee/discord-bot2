@@ -19,6 +19,8 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
+  if (message.author.bot) return;
+  
   if (message.author.id === '715246235141013506' && message.content.startsWith('<@793578516482228224>')) {
     message.channel.send('Don\'t be mean to me. Bots have feelings.')
   }
