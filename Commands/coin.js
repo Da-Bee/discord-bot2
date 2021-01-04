@@ -1,5 +1,6 @@
 module.exports = {
   name: 'coin',
+  aliases: ['coinflip', 'cointoss', 'coin-toss'],
   description: 'Flips a coin!',
   execute(message, args) {
     const quiz = require('./coin.json');
