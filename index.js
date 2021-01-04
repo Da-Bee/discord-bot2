@@ -18,9 +18,13 @@ client.once('ready', () => {
   console.log('Ready!');
 });
 
-client.on('message', message => {
+client.on('message', async message => {
   if (message.author.bot) return;
-  
+
+  if (message.member.voice.channel) {
+		const connection = await message.member.voice.channel.join();
+	}
+
   if (message.author.id === '715246235141013506' && message.content.startsWith('<@793578516482228224>')) {
     message.channel.send('Don\'t be mean to me. Bots have feelings.')
   }
