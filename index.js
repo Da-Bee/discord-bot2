@@ -21,13 +21,15 @@ client.once('ready', () => {
 client.on('message', async message => {
   if (message.author.bot) return;
 
+  if (message.channel.id === '796105569835548683' && message.author.id != `${ownerid}`) return;
+
+  if (message.channel.id === '796105569835548683' && message.author.id === '564555791030550528') {
+    message.delete()
+  }
   if (message.member.voice.channel) {
 		const connection = await message.member.voice.channel.join();
 	}
 
-  if (message.author.id === '715246235141013506' && message.content.startsWith('<@793578516482228224>')) {
-    message.channel.send('Don\'t be mean to me. Bots have feelings.')
-  }
   if (message.channel.id === '773731912547565628' && message.content.endsWith('?')) {
     message.channel.send('<@663876333243203589>')
   }
