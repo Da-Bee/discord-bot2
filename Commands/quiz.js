@@ -1,12 +1,9 @@
-const { ownerid } = require('../config.json');
-
 module.exports = {
   name: 'quiz',
   description: 'Pulls a quiz for the Unbelivaboat Coins',
   guildOnly: true,
-  permissions: 'MANAGE_GUILD',
   execute(message, args) {
-		if (message.author.id === `${ownerid}`) {
+		if (message.author.id === `608758675183501315`) {
       const quiz = require('./quiz.json');
   		const item = quiz[Math.floor(Math.random() * quiz.length)];
   		const filter = response => {
@@ -22,7 +19,7 @@ module.exports = {
   					message.channel.send('Looks like nobody got the answer this time.');
   				});
   		});
-    } else if (message.author.id !=`${ownerid}`) {
+    } else if (message.author.id !=`608758675183501315`) {
       message.channel.send('You don\'t have permissionto use this command!')
     }
   },
