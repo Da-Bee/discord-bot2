@@ -22,6 +22,10 @@ client.once('ready', () => {
 client.on('message', async message => {
   if (message.author.bot) return;
 
+  if (message.channel.id === `${supportchannelid}` && message.author.id === `${gurshaan}`) {
+    message.delete();
+  }
+
   if (message.channel.id === `${supportchannelid}` && message.author.id != `${ownerid}`) return;
 
   if (message.content.startsWith(`${prefix}`) && message.author.id === `${gurshaan}`) {
