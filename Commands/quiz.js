@@ -1,3 +1,5 @@
+const { ownerid } = require('../config.json')
+
 module.exports = {
   name: 'quiz',
   description: 'Pulls a quiz for the Unbelivaboat Coins',
