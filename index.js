@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, ownerid, ownerping } = require('./config.json');
+const { prefix, token, ownerid, ownerping, supportchannelid, supportchannel, gurshaan } = require('./config.json');
+const blockedUsers = [ `${gurshaan}` ]
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -21,10 +22,10 @@ client.once('ready', () => {
 client.on('message', async message => {
   if (message.author.bot) return;
 
-  if (message.channel.id === '796105569835548683' && message.author.id != `${ownerid}`) return;
+  if (message.channel.id === `${supportchannelid}` && message.author.id != `${ownerid}`) return;
 
-  if (message.channel.id === '796105569835548683' && message.author.id === '564555791030550528') {
-    message.delete()
+  if (message.content.startsWith(`${prefix}`) && message.author.id === `${gurshaan}`) {
+    message.channel.send('LOLLLL you\'re a banned user you absolute noob!')
   }
   if (message.member.voice.channel) {
 		const connection = await message.member.voice.channel.join();
@@ -40,6 +41,8 @@ client.on('message', async message => {
     message.channel.send(`Getting ${ownerping}...`)
   }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  if (blockedUsers.includes(message.author.id)) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();

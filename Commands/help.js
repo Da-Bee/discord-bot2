@@ -18,7 +18,7 @@ module.exports = {
       return message.author.send(data, { split: true })
         .then(() => {
           if (message.channel.type === 'dm') return;
-          message.reply('I\'ve sent you a DM with all my commands!\n\nCheck out the support channel: <#796105569835548683>!');
+          message.reply(`I\'ve sent you a DM with all my commands!\n\nCheck out the support channel: ${supportchannel}!`);
         })
         .catch(error => {
           console.error(`Could not send help DM to ${message.author.tag}.\n`, error);

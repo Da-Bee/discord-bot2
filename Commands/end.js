@@ -1,5 +1,6 @@
 module.exports = {
   name: 'end',
+  aliases: ['disconnect'],
   description: 'Ends the music playing.',
   execute(message) {
     const connection = message.guild.me.voice.connection
