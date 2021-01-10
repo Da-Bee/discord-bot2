@@ -1,10 +1,13 @@
 module.exports = {
   name: 'echo',
-  aliases: ['repeat'],
   description: 'repeats your words',
   usage: '<message>',
   execute(message, args) {
-    message.delete()
-    message.channel.send(message.content.slice(5, message.content.length));
+    if (message.content.includes('@')) {
+      message.channel.send('Your echo request includes a ping and therefore could not be executed.')
+    } else {
+      message.delete()
+      message.channel.send(message.content.slice(5, message.content.length));
+    }
   },
 };
