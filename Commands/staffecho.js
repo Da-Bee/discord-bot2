@@ -5,6 +5,6 @@ module.exports = {
   permissions: 'MENTION_EVERYONE',
   execute(message, args) {
       message.delete()
-      message.channel.send(message.content.slice(5, message.content.length));
+      message.channel.send(message.content.slice(10, message.content.length));
   },
 };
