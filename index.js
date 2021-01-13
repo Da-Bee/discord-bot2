@@ -32,6 +32,10 @@ client.on('message', async message => {
     message.channel.send('LOLLLL you\'re a banned user you absolute noob!')
   }
 
+  if (message.content === `${prefix}join` && message.author.id === `${ownerid}`) {
+    client.emit('guildMemberAdd', message.member);
+  }
+
   if (message.channel.id === '773731912547565628' && message.content.endsWith('?')) {
     message.channel.send('<@663876333243203589>')
   }
@@ -101,5 +105,27 @@ client.on('message', async message => {
     message.reply('There was an error trying to execute that command!');
   }
 });
+
+client.on('guildMemberAdd', member => {
+	const channel = member.guild.channels.cache.find(ch => ch.id === '749015533671940096');
+	if (!channel) return;
+
+	const welcome = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle('Welcome to The Chill Room!')
+    .setThumbnail('https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif')
+    .addFields(
+      { name: '\u200B', value: 'The server for people from D125 feeder schools, specifically for Aptakisic Students!'},
+      { name: '\u200B', value: '\u200B'},
+      { name: 'Rules Channel:', value: 'Please check <#748933586450907297> for the latest set of rules for our server!', inline: false },
+      { name: 'Role Selection:', value: 'To grab some roles, please go to <#748934281254141993> and get the roles you would like!', inline: false },
+      { name: 'Chatting with friends:', value: 'To talk to your friends, go to <#748934237624729710>! Make sure to ping an online staff and let them know your name, grade and school!'},
+    )
+    .setTimestamp()
+    .setFooter('Hello! This bot was designed by La-La#0001!', 'https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif');
+
+  member.send(welcome);
+});
+
 
 client.login(token);

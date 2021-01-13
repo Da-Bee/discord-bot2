@@ -1,7 +1,7 @@
 const { prefix, supportchannel, supportchannelid } = require('../config.json');
 
 module.exports = {
-  name:'help',
+  name: 'help',
   description: 'List all of my commands of info about a specific command.',
   aliases: ['halp', 'commands'],
   usage: '<command name>',

@@ -19,7 +19,7 @@ module.exports = {
       )
       .addField('Punishment if broken?', 'Muted and warned.', true)
       .setTimestamp()
-      .setFooter('Hello!', 'https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif');
+      .setFooter('Hello! This bot was designed by La-La#0001!', 'https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif');
 
     message.channel.send(rule8);
   },
