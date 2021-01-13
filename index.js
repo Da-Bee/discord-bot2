@@ -31,9 +31,6 @@ client.on('message', async message => {
   if (message.content.startsWith(`${prefix}`) && message.author.id === `${gurshaan}`) {
     message.channel.send('LOLLLL you\'re a banned user you absolute noob!')
   }
-  if (message.member.voice.channel) {
-		const connection = await message.member.voice.channel.join();
-	}
 
   if (message.channel.id === '773731912547565628' && message.content.endsWith('?')) {
     message.channel.send('<@663876333243203589>')
