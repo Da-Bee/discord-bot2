@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = {
   name: 'rule1',
   aliases: ['r1'],
@@ -5,6 +7,20 @@ module.exports = {
   guildOnly: true,
   cooldown: 15,
   execute(message) {
-    message.channel.send('**Excessive Explicit Language** - NO spamming of any kind especially swears; refrain from using them in the first place if possible. This is very flexible so don\'t abuse.')
+    const rule1 = new Discord.MessageEmbed()
+      .setColor('#0099ff')
+      .setTitle('Rule 1')
+      .setThumbnail('https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif')
+      .addFields(
+        { name: 'Rule:', value: '**Excessive Explicit Language** - NO spamming of any kind especially swears; refrain from using them in the first place if possible. This is very flexible so don\'t abuse.' },
+        { name: '\u200B', value: '\u200B' },
+        { name: 'Enforced by Bot?', value: 'Yes', inline: true },
+        { name: 'Heavily Enforced?', value: 'No', inline: true },
+      )
+      .addField('Punishment if broken?', 'Mute for 5m, after multiple infractions, a warn.', true)
+      .setTimestamp()
+      .setFooter('Hello!', 'https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif');
+
+    message.channel.send(rule1);
   },
 };

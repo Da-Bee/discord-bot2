@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = {
   name: 'rule2',
   aliases: ['r2'],
@@ -5,6 +7,20 @@ module.exports = {
   guildOnly: true,
   cooldown: 15,
   execute(message) {
-    message.channel.send('**DISCRIMINATION** - Posting ANY discriminating jokes, comments, photos, or content of any kind is INTOLERABLE - breaking this rule could result in an AUTOMATIC BAN.')
+    const rule2 = new Discord.MessageEmbed()
+      .setColor('#0099ff')
+      .setTitle('Rule 2')
+      .setThumbnail('https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif')
+      .addFields(
+        { name: 'Rule:', value: '**DISCRIMINATION** - Posting ANY discriminating jokes, comments, photos, or content of any kind is INTOLERABLE - breaking this rule could result in an AUTOMATIC BAN.' },
+        { name: '\u200B', value: '\u200B' },
+        { name: 'Enforced by Bot?', value: 'No', inline: true },
+        { name: 'Heavily Enforced?', value: 'Yes', inline: true },
+      )
+      .addField('Punishment if broken?', 'Depends on the text, racial and homophobic jokes are banned.', true)
+      .setTimestamp()
+      .setFooter('Hello!', 'https://cdn.discordapp.com/attachments/748934237624729710/798720760130174986/ezgif-4-a9fddd02eb8b.gif');
+
+    message.channel.send(rule2);
   },
 };
