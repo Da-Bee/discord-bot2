@@ -7,7 +7,7 @@ module.exports = {
       message.channel.send('Your echo request includes a ping and therefore could not be executed.')
     } else {
       message.delete()
-      message.channel.send(message.content.slice(5, message.content.length));
+      message.channel.send(`${message.content.slice(5, message.content.length)}\n     **-${message.author.tag}, 2021**`);
     }
   },
 };

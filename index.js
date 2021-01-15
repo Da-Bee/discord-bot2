@@ -2,6 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token, ownerid, ownerping, supportchannelid, supportchannel, gurshaan } = require('./config.json');
 const blockedUsers = [ `${gurshaan}` ]
+const db = require('quick.db');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -21,6 +22,18 @@ client.once('ready', () => {
 
 client.on('message', async message => {
   if (message.author.bot) return;
+  //checkking for afk messages
+  if (db.has(`afk-${message.author.id}+${message.guild.id}`)) {
+    const info = db.get(`afk-${message.author.id}+${message.guild.id}`)
+    await db.delete(`afk-${message.author.id}+${message.guild.id}`)
+    message.reply(`Your afk status has been removed (${info})`)
+  }
+  //checking for mentions
+  if (message.mentions.members.first()) {
+    if (db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)) {
+      message.channel.send(db.get(`afk-${message.mentions.members.first().id}+${message.guild.id}`))
+    } else return;
+  } else;
 
   if (message.channel.id === `${supportchannelid}` && message.author.id === `${gurshaan}`) {
     message.delete();
