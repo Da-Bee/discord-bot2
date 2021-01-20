@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const blacklist = require('./models/blacklist')
 const warns = require('./models/warns')
 
-mongoose.connect('mongodb+srv://aggaran21:Inte77hors@discord-bot.x2ypa.mongodb.net/Data', {
+mongoose.connect('mongodb+srv://aggaran21:<pass>@discord-bot.x2ypa.mongodb.net/Data', {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 }).then(console.log('Connected to Mongo db!'))
