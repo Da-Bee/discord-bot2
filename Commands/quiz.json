@@ -9,7 +9,7 @@
 	},
   {
     "question": "What is my name?",
-    "answers": ["CyberBug", "cyberbug"]
+    "answers": ["CyberBug", "cyberbug", "CyberBug#3133"]
   },
   {
     "question": "Who is the server owner?",
@@ -18,5 +18,17 @@
   {
     "question": "In pool, what color is the one ball?",
     "answers": ["yellow"]
-  }
+  },
+	{
+		"question": "Who created this bot?",
+		"answers": ["La-La", "LaLa", "La-La#0001", "Ansh"]
+	},
+	{
+		"question": "Who is the richest man alive?",
+		"answers": ["Elon Musk", "Musk"]
+	},
+	{
+		"question": "What is this bot's default prefix?",
+		"answers": [";"]
+	}
 ]

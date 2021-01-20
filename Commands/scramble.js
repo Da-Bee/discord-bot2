@@ -3,7 +3,6 @@ const { ownerid } = require('../config.json');
 module.exports = {
   name: 'scramble',
   description: 'Pulls a unscramble for the Unbelivaboat Coins',
-  guildOnly: true,
   execute(message, args) {
     if (message.author.id === `${ownerid}`) {
       const quiz = require('./scramble.json');

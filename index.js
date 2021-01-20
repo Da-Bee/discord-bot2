@@ -1,8 +1,16 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token, ownerid, ownerping, supportchannelid, supportchannel, gurshaan } = require('./config.json');
-const blockedUsers = [ `${gurshaan}` ]
 const db = require('quick.db');
+const ms = require('ms');
+const mongoose = require('mongoose');
+const blacklist = require('./models/blacklist')
+const warns = require('./models/warns')
+
+mongoose.connect('mongodb+srv://aggaran21:Inte77hors@discord-bot.x2ypa.mongodb.net/Data', {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+}).then(console.log('Connected to Mongo db!'))
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -17,33 +25,19 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
-  console.log('Ready!');
+  console.log('Logged on as CyberBug!');
 });
 
 client.on('message', async message => {
   if (message.author.bot) return;
-  //checkking for afk messages
-  if (db.has(`afk-${message.author.id}+${message.guild.id}`)) {
-    const info = db.get(`afk-${message.author.id}+${message.guild.id}`)
-    await db.delete(`afk-${message.author.id}+${message.guild.id}`)
-    message.reply(`Your afk status has been removed (${info})`)
+  if (message.content === '<@793578516482228224>') {
+    message.channel.send(`Hi! My prefix is: ${prefix}\nUse ${prefix}help for a list of my commands!`)
   }
-  //checking for mentions
-  if (message.mentions.members.first()) {
-    if (db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)) {
-      message.channel.send(db.get(`afk-${message.mentions.members.first().id}+${message.guild.id}`))
-    } else return;
-  } else;
-
   if (message.channel.id === `${supportchannelid}` && message.author.id === `${gurshaan}`) {
     message.delete();
   }
 
   if (message.channel.id === `${supportchannelid}` && message.author.id != `${ownerid}`) return;
-
-  if (message.content.startsWith(`${prefix}`) && message.author.id === `${gurshaan}`) {
-    message.channel.send('LOLLLL you\'re a banned user you absolute noob!')
-  }
 
   if (message.content === `${prefix}join` && message.author.id === `${ownerid}`) {
     client.emit('guildMemberAdd', message.member);
@@ -52,15 +46,27 @@ client.on('message', async message => {
   if (message.channel.id === '773731912547565628' && message.content.endsWith('?')) {
     message.channel.send('<@663876333243203589>')
   }
-  if (message.content === '<@793578516482228224>') {
-    message.channel.send(`Hi! My prefix is: ${prefix}\nUse ${prefix}help for a list of my commands!`)
-  }
   if (message.content === '+') {
     message.channel.send(`Getting ${ownerping}...`)
   }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  if (blockedUsers.includes(message.author.id)) return;
+  if (!message.content.startsWith(prefix)) return;
+  blacklist.findOne({ id: message.author.id }, async(err, data) => {
+    if (err) throw err;
+    if(!data) {
+      if (!message.guild) return;
+      if (!message.member) message.member = await message.guild.fetchMember(message);
+      const args = message.content.slice(prefix.length).trim().split(/ +/g);
+      const cmd = args.shift().toLowerCase();
+      if (cmd.length == 0) return;
+      let command = client.commands.get(cmd)
+      if (!command) command = client.commands.get(client.aliases.get(cmd));
+      if (command) command.execute(message, args, client)
+    } else {
+      message.channel.send('You are blacklisted from using this bot!')
+    }
+  })
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -77,7 +83,7 @@ client.on('message', async message => {
   if (command.permissions) {
     const authorPerms = message.channel.permissionsFor(message.member);
     if (!authorPerms || !authorPerms.has(command.permissions)) {
-      return message.channel.send('You cannot use this command!');
+      return message.channel.send(`You cannot use this command! You need the ${permissions} permission to use this command!`);
     }
   }
 
@@ -112,7 +118,7 @@ client.on('message', async message => {
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   try {
-    command.execute(message, args);
+    command.execute(message, args, client);
   } catch (error) {
     console.error(error);
     message.reply('There was an error trying to execute that command!');

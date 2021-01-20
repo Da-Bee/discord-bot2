@@ -1,7 +1,6 @@
 module.exports = {
   name: 'quiz',
   description: 'Pulls a quiz for the Unbelivaboat Coins',
-  guildOnly: true,
   execute(message, args) {
 		if (message.author.id === `608758675183501315`) {
       const quiz = require('./quiz.json');
